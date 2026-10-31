@@ -634,7 +634,7 @@ export const journey: {
     when: 'Oct 2026',
     type: 'Research',
     title: 'CF-NODE published on arXiv',
-    where: 'arXiv:2610.22437 · with Deepak Parashar',
+    where: 'arXiv:2610.22437 · first author',
     detail: 'First-author paper on keeping diabetic-retinopathy grading models reliable on images from new hospitals and cameras, without retraining.',
     points: ['Best average AUC and macro-F1 against TENT, EATA, SAR and T3A on five unseen datasets', 'Open-source code (MIT) with a plug-in run_tta API'],
     tags: ['PyTorch', 'Computer vision', 'Research'],
@@ -689,7 +689,13 @@ export const journey: {
     type: 'Education',
     title: 'BBA, Finance',
     where: 'PES University, Bengaluru',
-    detail: 'Finance foundations: accounting, financial reporting and business fundamentals.',
+    detail: 'Three years on how a company runs and how it should be run: money, markets, people, operations and the rules around them. That business base is what lets my analytics go beyond the numbers.',
+    points: [
+      'Core finance, derivatives and financial analytics',
+      'Business analytics and data analytics',
+      'Product management, production and operations management',
+      'Marketing, human resources and business law',
+    ],
   },
 ]
 

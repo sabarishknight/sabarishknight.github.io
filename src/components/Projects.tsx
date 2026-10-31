@@ -5,9 +5,12 @@ import MiniChart from './MiniChart'
 import { RepoCard, RunCell, StatusBadge } from './ProjectBits'
 import { accentVar } from '../lib/util'
 
+type Filter = (typeof categories)[number] | 'Top 5'
+
 export default function Projects() {
-  const [cat, setCat] = useState<(typeof categories)[number]>('All')
-  const list = cat === 'All' ? projects : projects.filter((p) => p.categories.includes(cat))
+  // phones skip the Top projects section, so they open on the top 5 here instead
+  const [cat, setCat] = useState<Filter>(() => (window.matchMedia('(max-width: 767px)').matches ? 'Top 5' : 'All'))
+  const list = cat === 'All' ? projects : cat === 'Top 5' ? projects.filter((p) => p.featured) : projects.filter((p) => p.categories.includes(cat))
   return (
     <section id="projects" className="section wrap" aria-labelledby="projects-h">
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -18,15 +21,15 @@ export default function Projects() {
       </div>
       <LayoutGroup>
         <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
-          {categories.map((c) => {
-            const n = c === 'All' ? projects.length : projects.filter((p) => p.categories.includes(c)).length
+          {(['Top 5', ...categories] as Filter[]).map((c) => {
+            const n = c === 'All' ? projects.length : c === 'Top 5' ? projects.filter((p) => p.featured).length : projects.filter((p) => p.categories.includes(c)).length
             const on = c === cat
             return (
               <button
                 key={c}
                 onClick={() => setCat(c)}
                 aria-pressed={on}
-                className={`brut-sm press relative px-3 py-2 font-mono text-sm font-semibold ${on ? 'text-[#0a0a0a]' : 'bg-surface'}`}
+                className={`brut-sm press relative px-3 py-2 font-mono text-sm font-semibold ${on ? 'text-[#0a0a0a]' : 'bg-surface'} ${c === 'Top 5' ? 'md:hidden' : ''}`}
               >
                 {on && <motion.span layoutId="chip" className="absolute inset-0 bg-pink" transition={{ type: 'spring', stiffness: 400, damping: 30 }} />}
                 <span className="relative">

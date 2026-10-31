@@ -34,6 +34,11 @@ export default function AnomalyHunt() {
   const best = useRef<Record<string, number>>(readBest())
   const svg = useRef<SVGSVGElement>(null)
   const L = LEVELS[level]
+  // the loop reads speed from refs so switching mid-round keeps the clock and points running
+  const levelRef = useRef(level)
+  levelRef.current = level
+  const easiest = useRef(level) // best score is credited to the easiest speed used in the round
+  easiest.current = Math.min(easiest.current, level)
 
   useEffect(() => {
     if (mode !== 'play') return
@@ -48,14 +53,15 @@ export default function AnomalyHunt() {
       t += dt
       clock.current = t
       left.current = Math.max(0, ROUND - t)
-      const speed = (L.speed + t * L.ramp) * (W / 1000)
+      const lv = LEVELS[levelRef.current]
+      const speed = (lv.speed + t * lv.ramp) * (W / 1000)
       travelled += speed * dt
       if (travelled >= GAP * (W / 1000)) {
         travelled = 0
         const bad = Math.random() < 0.13
         const base = MID + Math.sin(t * 1.1) * 36 + (Math.random() - 0.5) * SIGMA * 1.5
         // harder levels make anomalies subtler over the round: 4.5σ → ~3σ
-        const jump = (4.5 - Math.min(1.5, t * L.sub)) * SIGMA * (Math.random() < 0.5 ? -1 : 1)
+        const jump = (4.5 - Math.min(1.5, t * lv.sub)) * SIGMA * (Math.random() < 0.5 ? -1 : 1)
         pts.current.push({ id: id++, x: W + 10, y: bad ? Math.min(H - 16, Math.max(16, base + jump)) : base, bad })
       }
       for (const p of pts.current) p.x -= speed * dt
@@ -70,24 +76,26 @@ export default function AnomalyHunt() {
     }
     raf = requestAnimationFrame(loop)
     return () => cancelAnimationFrame(raf)
-  }, [mode, L])
+  }, [mode])
 
   const start = () => {
     pts.current = []
     score.current = { tp: 0, fp: 0, fn: 0 }
     left.current = ROUND
+    easiest.current = levelRef.current
     setMode('play')
   }
   const end = () => {
     // anomalies still on screen and unflagged count as misses
     score.current.fn += pts.current.filter((p) => p.bad && !p.hit).length
     const f = f1(score.current)
-    if (f > (best.current[L.name] ?? 0)) {
-      best.current = { ...best.current, [L.name]: f }
+    const name = LEVELS[easiest.current].name
+    if (f > (best.current[name] ?? 0)) {
+      best.current = { ...best.current, [name]: f }
       try {
         localStorage.setItem('anomaly-best', JSON.stringify(best.current))
       } catch {}
-      if (f > 0) toast(`New best on ${L.name}: F1 ${f.toFixed(2)}`)
+      if (f > 0) toast(`New best on ${name}: F1 ${f.toFixed(2)}`)
     }
     setMode('over')
   }
@@ -147,8 +155,8 @@ export default function AnomalyHunt() {
               <p className="text-lg">
                 A live KPI streams past. Tap the <strong>spikes and dips</strong> that jump out of the blue band before they leave the screen. Tap normal points and you lose precision; miss a spike and you lose recall.
               </p>
-              <fieldset className="mt-5" disabled={mode === 'play'}>
-                <legend className="font-display text-xl font-bold">Speed</legend>
+              <fieldset className="mt-5">
+                <legend className="font-display text-xl font-bold">Speed {mode === 'play' && <span className="font-mono text-sm font-medium">(switch any time)</span>}</legend>
                 <div className="mt-2 grid grid-cols-2 gap-2" role="radiogroup" aria-label="Speed">
                   {LEVELS.map((lv, i) => (
                     <button

@@ -45,7 +45,9 @@ export default function App() {
         <Projects />
         <AnomalyHunt />
         <Research />
-        <Marquee items={['first author', 'arXiv:2610.22437', 'no gradients', 'no target batches', 'one image at a time', '5 unseen datasets']} reverse tone="pink" />
+        <div className="max-md:hidden">
+          <Marquee items={['first author', 'arXiv:2610.22437', 'no gradients', 'no target batches', 'one image at a time', '5 unseen datasets']} reverse tone="pink" />
+        </div>
       </main>
       <Footer />
       <CommandPalette />

@@ -92,7 +92,7 @@ function Progress({ p }: { p: MotionValue<number> }) {
 
 function Vertical({ markSeen }: { markSeen: (id: string) => void }) {
   return (
-    <section id="featured" className="section wrap" aria-labelledby="featured-h">
+    <section id="featured" className="section wrap max-md:hidden" aria-labelledby="featured-h">
       <div id="featured-h">
         <Heading />
       </div>

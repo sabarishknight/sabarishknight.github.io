@@ -11,6 +11,7 @@ const reveal = {
 }
 
 export default function Research() {
+  const [more, setMore] = useState(false)
   return (
     <section id="research" className="section invert-block border-y-[3px] border-line bg-paper text-ink" aria-labelledby="research-h">
       <div className="wrap">
@@ -18,7 +19,7 @@ export default function Research() {
           <h2 id="research-h" className="h-section">
             Research
           </h2>
-          <p className="max-w-[44ch] text-lg">{paper.lead}</p>
+          <p className="max-w-[44ch] text-lg max-md:hidden">{paper.lead}</p>
         </div>
 
         {/* paper card */}
@@ -51,8 +52,21 @@ export default function Research() {
             </A>
             <CopyBib />
           </div>
+          <button
+            onClick={() => setMore(!more)}
+            aria-expanded={more}
+            aria-controls="research-more"
+            className="brut-sm press mt-5 flex w-full items-center justify-between bg-white px-4 py-3 font-display text-lg font-bold md:hidden"
+          >
+            {more ? 'Hide the details' : 'Results, method and data'}
+            <span className={`text-2xl transition-transform ${more ? 'rotate-45' : ''}`} aria-hidden="true">
+              +
+            </span>
+          </button>
         </motion.article>
 
+        {/* phones: hidden until expanded from the green card; laptops: always shown */}
+        <div id="research-more" className={more ? '' : 'max-md:hidden'}>
         {/* headline numbers */}
         <ul className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-5">
           {paper.headline.map((h, i) => (
@@ -120,6 +134,7 @@ export default function Research() {
           <Box title="Cite this paper (BibTeX)">
             <pre className="overflow-x-auto whitespace-pre bg-paper p-4 font-mono text-[13px]">{bibtex}</pre>
           </Box>
+        </div>
         </div>
       </div>
     </section>
