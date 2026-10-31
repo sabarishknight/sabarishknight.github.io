@@ -1,0 +1,231 @@
+{
+  "fetchedAt": "2026-10-31T10:57:07.754Z",
+  "repos": [
+    {
+      "name": "1",
+      "description": null,
+      "url": "https://github.com/sabarishknight/1",
+      "stars": 0,
+      "forks": 0,
+      "language": null,
+      "topics": [],
+      "pushedAt": "2026-10-30T04:28:32Z",
+      "fork": false
+    },
+    {
+      "name": "2",
+      "description": null,
+      "url": "https://github.com/sabarishknight/2",
+      "stars": 0,
+      "forks": 0,
+      "language": null,
+      "topics": [],
+      "pushedAt": "2026-10-29T18:20:19Z",
+      "fork": false
+    },
+    {
+      "name": "metric-on-call",
+      "description": "Multi-agent AI analyst that investigates KPI anomalies end to end: data-quality gate, metric decomposition, hypothesis testing, dollar impact, human-approved brief. LangGraph · MCP · dbt · BigQuery · Pub/Sub · Terraform. Runs free on a laptop or Google Cloud.",
+      "url": "https://github.com/sabarishknight/metric-on-call",
+      "stars": 0,
+      "forks": 0,
+      "language": "Python",
+      "topics": [],
+      "pushedAt": "2026-10-27T05:14:00Z",
+      "fork": false
+    },
+    {
+      "name": "Nirnay",
+      "description": "Agentic AI for Home Loan Approval",
+      "url": "https://github.com/sabarishknight/Nirnay",
+      "stars": 0,
+      "forks": 0,
+      "language": "Python",
+      "topics": [],
+      "pushedAt": "2026-10-24T17:55:26Z",
+      "fork": false
+    },
+    {
+      "name": "veritas-claims-standardisation",
+      "description": null,
+      "url": "https://github.com/sabarishknight/veritas-claims-standardisation",
+      "stars": 0,
+      "forks": 0,
+      "language": "Python",
+      "topics": [],
+      "pushedAt": "2026-10-24T17:29:07Z",
+      "fork": false
+    },
+    {
+      "name": "faceroll-attendance",
+      "description": "Face-recognition class attendance: scan students once, snap a class photo, get attendance marked automatically. Flask + SCRFD/ArcFace (ONNX) on Google Cloud Run + Firestore.",
+      "url": "https://github.com/sabarishknight/faceroll-attendance",
+      "stars": 0,
+      "forks": 0,
+      "language": "Python",
+      "topics": [],
+      "pushedAt": "2026-10-19T09:09:15Z",
+      "fork": false
+    },
+    {
+      "name": "callback-ai",
+      "description": null,
+      "url": "https://github.com/sabarishknight/callback-ai",
+      "stars": 0,
+      "forks": 0,
+      "language": "Python",
+      "topics": [],
+      "pushedAt": "2026-10-12T09:10:05Z",
+      "fork": false
+    },
+    {
+      "name": "credit-policy-optimizer",
+      "description": "Profit-optimal approve / refer / decline credit policy built on 789k real consumer loans (Bondora, 2009–2026). Leakage audit, WoE scorecard vs. gradient boosting, calibration, profit curve with sensitivity analysis, reason codes, PSI drift and segment checks, plus a Streamlit simulator. Lifts profit from €2.0M to €4.7M on unseen 2025 loans.",
+      "url": "https://github.com/sabarishknight/credit-policy-optimizer",
+      "stars": 0,
+      "forks": 0,
+      "language": "Jupyter Notebook",
+      "topics": [],
+      "pushedAt": "2026-10-02T10:05:16Z",
+      "fork": false
+    },
+    {
+      "name": "retail-energy-carbon-analytics",
+      "description": "Energy, carbon and water analytics for a portfolio of large retail stores, built on real public data (NYC building disclosures 2019–2024, utility bills, weather, solar/BMS data). Benchmarks stores, audits monthly bills for waste and billing errors, forecasts consumption and ranks savings by cost, kWh and CO₂e.",
+      "url": "https://github.com/sabarishknight/retail-energy-carbon-analytics",
+      "stars": 0,
+      "forks": 0,
+      "language": "Jupyter Notebook",
+      "topics": [],
+      "pushedAt": "2026-10-01T07:16:19Z",
+      "fork": false
+    },
+    {
+      "name": "Weather_and_Bird_Migration",
+      "description": null,
+      "url": "https://github.com/sabarishknight/Weather_and_Bird_Migration",
+      "stars": 0,
+      "forks": 0,
+      "language": null,
+      "topics": [],
+      "pushedAt": "2026-09-29T11:16:08Z",
+      "fork": false
+    },
+    {
+      "name": "regime-aware-flight-delay-prediction",
+      "description": "Regime-aware ML for near-term flight disruption prediction, tests whether latent operating states improve on strong tabular baselines (spoiler: they don't, and SHAP shows why)",
+      "url": "https://github.com/sabarishknight/regime-aware-flight-delay-prediction",
+      "stars": 1,
+      "forks": 0,
+      "language": "Jupyter Notebook",
+      "topics": [],
+      "pushedAt": "2026-09-29T05:28:37Z",
+      "fork": false
+    },
+    {
+      "name": "ecommerce-late-delivery-cost-analysis",
+      "description": "Analysis of 96,203 real e-commerce orders measuring what late deliveries cost in customer ratings, and where operations should act first. Includes a SQL data model, causal inference, machine learning and prioritised recommendations for ops and finance.",
+      "url": "https://github.com/sabarishknight/ecommerce-late-delivery-cost-analysis",
+      "stars": 1,
+      "forks": 0,
+      "language": "HTML",
+      "topics": [],
+      "pushedAt": "2026-09-29T04:47:15Z",
+      "fork": false
+    },
+    {
+      "name": "dataset-",
+      "description": null,
+      "url": "https://github.com/sabarishknight/dataset-",
+      "stars": 0,
+      "forks": 0,
+      "language": null,
+      "topics": [],
+      "pushedAt": "2026-09-26T06:31:15Z",
+      "fork": false
+    },
+    {
+      "name": "CF-Node",
+      "description": " PyTorch implementation of CF-NODE, a Test-Time Adaptation (TTA) framework for improving domain robustness and domain shift adaptation in diabetic retinopathy grading through counterfactual lesion node editing.",
+      "url": "https://github.com/sabarishknight/CF-Node",
+      "stars": 1,
+      "forks": 0,
+      "language": "Python",
+      "topics": [],
+      "pushedAt": "2026-07-29T11:18:03Z",
+      "fork": false
+    },
+    {
+      "name": "iris-notch",
+      "description": "A macOS menu bar app that uses the notch area to show blink and look-away reminders.",
+      "url": "https://github.com/sabarishknight/iris-notch",
+      "stars": 1,
+      "forks": 0,
+      "language": "Swift",
+      "topics": [],
+      "pushedAt": "2026-06-30T15:12:37Z",
+      "fork": false
+    },
+    {
+      "name": "Regime-Adaptive_Probabilistic_Demand_Forecasting",
+      "description": "Regime-adaptive probabilistic forecasting of NYISO Zone J (NYC) hourly electricity demand, with test-time recalibration that stays calibrated through the 2020 COVID shock, no retraining.",
+      "url": "https://github.com/sabarishknight/Regime-Adaptive_Probabilistic_Demand_Forecasting",
+      "stars": 1,
+      "forks": 0,
+      "language": "Python",
+      "topics": [
+        "conformal-prediction",
+        "electricity-demand-forecasting",
+        "forecasting",
+        "time-series",
+        "uncertainty-quantification"
+      ],
+      "pushedAt": "2026-06-23T15:30:00Z",
+      "fork": false
+    },
+    {
+      "name": "Aviation_Emissions_and_Fleet_Efficiency_Dashboard",
+      "description": "Designed an interactive Tableau dashboard analyzing European aviation CO₂ emissions, fuel efficiency, and fleet composition trends using EUROCONTROL public data.",
+      "url": "https://github.com/sabarishknight/Aviation_Emissions_and_Fleet_Efficiency_Dashboard",
+      "stars": 1,
+      "forks": 0,
+      "language": null,
+      "topics": [],
+      "pushedAt": "2026-06-18T12:20:44Z",
+      "fork": false
+    },
+    {
+      "name": "End-to-End-Product-Analytics-A-B-Testing-E-commerce-Case-Study-",
+      "description": "An end-to-end product analytics project using real e-commerce behavior data to design metrics, simulate an A/B test, and make a data-driven product decision.",
+      "url": "https://github.com/sabarishknight/End-to-End-Product-Analytics-A-B-Testing-E-commerce-Case-Study-",
+      "stars": 1,
+      "forks": 0,
+      "language": "Jupyter Notebook",
+      "topics": [],
+      "pushedAt": "2025-12-23T06:22:59Z",
+      "fork": false
+    },
+    {
+      "name": "Accuracy-Improves-but-Intelligence-Decreases",
+      "description": null,
+      "url": "https://github.com/sabarishknight/Accuracy-Improves-but-Intelligence-Decreases",
+      "stars": 1,
+      "forks": 0,
+      "language": "Jupyter Notebook",
+      "topics": [],
+      "pushedAt": "2025-12-22T17:17:01Z",
+      "fork": false
+    },
+    {
+      "name": "SpuriousWaterbird",
+      "description": "An experiment illustrating spurious correlations and shortcut learning in image classification using the Waterbirds dataset.",
+      "url": "https://github.com/sabarishknight/SpuriousWaterbird",
+      "stars": 1,
+      "forks": 0,
+      "language": "Jupyter Notebook",
+      "topics": [],
+      "pushedAt": "2025-12-22T15:40:15Z",
+      "fork": false
+    }
+  ]
+}
