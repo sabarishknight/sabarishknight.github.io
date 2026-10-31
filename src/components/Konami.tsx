@@ -5,7 +5,7 @@ import { toast } from '../lib/util'
 const CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
 
 const card = [
-  ['model', 'sabarish-g (v2027.05, final-year MS)'],
+  ['model', 'sabarish-g (final-year MS Business Analytics)'],
   ['architecture', 'finance roots → analytics → ML research'],
   ['training data', 'BBA Finance, 2 yrs Wego + Jetapult, MS Business Analytics'],
   ['intended use', 'turning messy business data into decisions'],

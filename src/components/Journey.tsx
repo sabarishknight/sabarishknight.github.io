@@ -13,7 +13,7 @@ export default function Journey() {
   const ref = useRef<HTMLOListElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 70%', 'end 60%'] })
   const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 28 })
-  const [open, setOpen] = useState<number | null>(0)
+  const [open, setOpen] = useState<number | null>(4)
   return (
     <section id="journey" className="section wrap" aria-labelledby="journey-h">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
@@ -21,7 +21,7 @@ export default function Journey() {
           <h2 id="journey-h" className="h-section">
             Journey
           </h2>
-          <p className="mt-4 max-w-[36ch] text-lg">Finance roots, analytics training, research and shipped products. Most recent first. Tap a node to open it.</p>
+          <p className="mt-4 max-w-[36ch] text-lg">Finance roots, two years of reporting and dashboards, an analytics master’s, and a research paper. Most recent first; open any step for the detail.</p>
           <ul className="mt-6 flex flex-wrap gap-2 font-mono text-sm">
             {Object.entries(tone).map(([k, v]) => (
               <li key={k} className="brut-sm px-2 py-1 text-[#0a0a0a]" style={{ background: v.bg }}>
@@ -51,13 +51,34 @@ export default function Journey() {
                     {j.when} · {j.type}
                   </span>
                   <span className="mt-1 block font-display text-[1.45rem] font-bold leading-tight tracking-tight">{j.title}</span>
+                  {j.where && <span className="mt-1 block font-semibold">{j.where}</span>}
                   <AnimatePresence initial={false}>
                     {on && (
                       <motion.span initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="block overflow-hidden">
-                        <span className="block pt-2 text-[16px]">{j.detail}</span>
+                        <span className="block pt-3 text-[16px]">{j.detail}</span>
+                        {j.points && (
+                          <span className="mt-3 grid gap-2">
+                            {j.points.map((pt) => (
+                              <span key={pt} className="flex gap-2.5 text-[16px]">
+                                <span className="mt-[7px] h-2.5 w-2.5 flex-none border-2 border-current" aria-hidden="true" />
+                                {pt}
+                              </span>
+                            ))}
+                          </span>
+                        )}
+                        {j.tags && (
+                          <span className="mt-3 flex flex-wrap gap-1.5">
+                            {j.tags.map((t) => (
+                              <span key={t} className="border-2 border-current px-2 py-0.5 font-mono text-xs">
+                                {t}
+                              </span>
+                            ))}
+                          </span>
+                        )}
                       </motion.span>
                     )}
                   </AnimatePresence>
+                  <span className="mt-2 block font-mono text-xs opacity-70" aria-hidden="true">{on ? '− less' : '+ more'}</span>
                 </button>
               </li>
             )

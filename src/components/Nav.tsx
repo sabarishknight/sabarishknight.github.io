@@ -3,11 +3,12 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
+  ['Journey', '#journey'],
   ['Work', '#featured'],
   ['Skills', '#skills'],
   ['Projects', '#projects'],
+  ['Game', '#game'],
   ['Research', '#research'],
-  ['Journey', '#journey'],
   ['Contact', '#contact'],
 ]
 

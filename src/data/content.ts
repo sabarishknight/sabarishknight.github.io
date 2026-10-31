@@ -43,8 +43,9 @@ export interface Project {
 export const site = {
   url: 'https://sabarishknight.github.io',
   name: 'Sabarish G',
-  tagline: 'Data Scientist & ML Builder · Data Analyst · Product-minded',
-  rotating: ['Machine Learning', 'Causal Inference', 'Computer Vision', 'Multi-Agent AI', 'Data Analytics', 'Product'],
+  tagline: 'Data Scientist · Data Analyst · Business Analyst · Product Analyst',
+  roles: ['Data Scientist', 'Data Analyst', 'Business Analyst', 'Product Analyst', 'Decision Scientist'],
+  rotating: ['Data Analytics', 'Machine Learning', 'Statistics', 'Dashboards', 'Business Questions', 'Product'],
   location: 'Bengaluru, India',
   bio: "I solve problems domain-first: I learn how the business works, clean the data, then build the analysis or model that drives a decision. The best answer rarely comes from a fancier algorithm; it comes from asking the right business question. I'm a final-year MS Business Analytics student with finance roots (BBA, 2 years at Wego and Jetapult), first author of a computer-vision research paper, and I use AI tools to turn ideas into working products fast.",
   email: 'sabarishknight@gmail.com',
@@ -52,8 +53,10 @@ export const site = {
   github: 'https://github.com/sabarishknight',
   githubUser: 'sabarishknight',
   arxiv: 'https://arxiv.org/abs/2610.22437',
-  // TODO: drop a phone-free copy of your resume at public/Sabarish_G_Resume.pdf
   resume: '/Sabarish_G_Resume.pdf',
+  phone: '+91 81236 74177',
+  phoneHref: 'tel:+918123674177',
+  whatsapp: 'https://wa.me/918123674177',
   // TODO: fill any of these to show them; empty strings stay hidden
   otherLinks: [
     { label: 'Kaggle', url: '' },
@@ -61,17 +64,8 @@ export const site = {
     { label: 'Google Scholar', url: '' },
     { label: 'ORCID', url: '' },
   ],
-  openTo:
-    'Data Scientist / ML roles first · Data Analyst, Product Analyst, Decision Scientist · Product roles welcome',
   available: 'Available from December 2026',
 }
-
-export const counters = [
-  { value: 39, suffix: 'M', label: 'flights modelled' },
-  { value: 789, suffix: 'K', label: 'loans scored' },
-  { value: 8, suffix: '', label: 'projects shipped or in progress' },
-  { value: 1, suffix: '', label: 'first-author research paper' },
-]
 
 /** icon: simple-icons slug, or omitted to draw a monogram tile */
 export interface Skill {
@@ -80,37 +74,92 @@ export interface Skill {
   color?: string
 }
 
-export const skillGroups: { group: string; accent: Project['accent']; skills: Skill[] }[] = [
+/** Core: daily tools I can be tested on. Everything in skillGroups is hands-on project work, often built with AI assistance. */
+export const coreSkills: { group: string; accent: Project['accent']; skills: Skill[] }[] = [
   {
-    group: 'Languages & Data',
+    group: 'Excel & Spreadsheets',
     accent: 'lime',
     skills: [
+      { name: 'Advanced Excel', icon: 'microsoftexcel' },
+      { name: 'XLOOKUP / INDEX-MATCH' },
+      { name: 'Pivot Tables' },
+      { name: 'Power Query', icon: 'microsoftexcel' },
+      { name: 'Power Pivot', icon: 'microsoftexcel' },
+      { name: 'VBA macros', color: '#867DB1' },
+    ],
+  },
+  {
+    group: 'Python & SQL',
+    accent: 'cyan',
+    skills: [
       { name: 'Python', icon: 'python' },
-      { name: 'SQL', icon: 'postgresql' },
+      { name: 'pandas', icon: 'pandas' },
+      { name: 'NumPy', icon: 'numpy' },
+      { name: 'SQL (CTEs, window functions, joins)', icon: 'postgresql' },
       { name: 'BigQuery', icon: 'googlebigquery' },
+      { name: 'Jupyter', icon: 'jupyter' },
+    ],
+  },
+  {
+    group: 'Dashboards & BI',
+    accent: 'sun',
+    skills: [
+      { name: 'Power BI', icon: 'powerbi' },
+      { name: 'Tableau', icon: 'tableau' },
+      { name: 'Looker / Looker Studio', icon: 'looker' },
+      { name: 'Streamlit', icon: 'streamlit' },
+      { name: 'KPI definition' },
+      { name: 'Financial reporting' },
+    ],
+  },
+  {
+    group: 'Statistics & Causal',
+    accent: 'pink',
+    skills: [
+      { name: 'Hypothesis testing' },
+      { name: 'A/B testing' },
+      { name: 'Regression' },
+      { name: 'Bootstrap CIs' },
+      { name: 'Causal inference basics' },
+      { name: 'Forecasting' },
+    ],
+  },
+  {
+    group: 'Machine learning concepts',
+    accent: 'violet',
+    skills: [
+      { name: 'scikit-learn', icon: 'scikitlearn' },
+      { name: 'Classification & regression' },
+      { name: 'Gradient boosting' },
+      { name: 'Model evaluation' },
+      { name: 'Calibration' },
+      { name: 'SHAP explanations' },
+    ],
+  },
+]
+
+export const skillGroups: { group: string; accent: Project['accent']; skills: Skill[] }[] = [
+  {
+    group: 'Data tooling',
+    accent: 'lime',
+    skills: [
       { name: 'DuckDB', icon: 'duckdb' },
       { name: 'Parquet', icon: 'apacheparquet' },
       { name: 'dbt', icon: 'dbt' },
       { name: 'Git', icon: 'git' },
-      { name: 'pandas', icon: 'pandas' },
-      { name: 'NumPy', icon: 'numpy' },
-      { name: 'Jupyter', icon: 'jupyter' },
     ],
   },
   {
     group: 'ML & Deep Learning',
     accent: 'pink',
     skills: [
-      { name: 'scikit-learn', icon: 'scikitlearn' },
       { name: 'LightGBM', color: '#9ACD32' },
       { name: 'CatBoost', color: '#FFCC00' },
       { name: 'XGBoost', color: '#1A8CFF' },
       { name: 'PyTorch', icon: 'pytorch' },
       { name: 'torchvision', icon: 'pytorch' },
-      { name: 'SHAP', color: '#FF0D57' },
       { name: 'statsmodels', color: '#3F7FBF' },
       { name: 'Conformal prediction', color: '#8B5CF6' },
-      { name: 'Calibration', color: '#22D3EE' },
     ],
   },
   {
@@ -139,33 +188,15 @@ export const skillGroups: { group: string; accent: Project['accent']; skills: Sk
     ],
   },
   {
-    group: 'Statistics & Causal',
+    group: 'Advanced statistics',
     accent: 'sun',
     skills: [
-      { name: 'Hypothesis testing' },
-      { name: 'A/B testing' },
-      { name: 'Bootstrap CIs' },
       { name: 'Regression discontinuity' },
       { name: 'Propensity-score matching' },
       { name: 'Fixed effects' },
       { name: 'Doubly-robust (AIPW)' },
       { name: 'Quantile regression' },
-      { name: 'Forecasting' },
-    ],
-  },
-  {
-    group: 'Analytics & BI',
-    accent: 'lime',
-    skills: [
-      { name: 'Tableau', icon: 'tableau' },
-      { name: 'Power BI', color: '#F2C811' },
-      { name: 'Looker', icon: 'looker' },
-      { name: 'Looker Studio', icon: 'looker' },
-      { name: 'Streamlit', icon: 'streamlit' },
       { name: 'matplotlib', color: '#11557C' },
-      { name: 'Advanced Excel', color: '#217346' },
-      { name: 'Power Query', color: '#217346' },
-      { name: 'VBA', color: '#867DB1' },
     ],
   },
   {
@@ -173,12 +204,10 @@ export const skillGroups: { group: string; accent: Project['accent']; skills: Sk
     accent: 'pink',
     skills: [
       { name: 'Requirements' },
-      { name: 'KPI definition' },
       { name: 'Six Sigma DMAIC' },
       { name: 'Process mapping' },
       { name: 'Agile / Jira', icon: 'jira' },
       { name: 'Stakeholder management' },
-      { name: 'Financial reporting' },
       { name: 'Unit economics' },
     ],
   },
@@ -359,6 +388,7 @@ export const projects: Project[] = [
     ],
     links: [{ label: 'Code', url: gh('metric-on-call') }],
     repo: 'metric-on-call',
+    featured: true,
     chart: 'agents',
     accent: 'violet',
   },
@@ -591,102 +621,90 @@ export const bibtex = `@misc{g2026cfnode,
 
 export type JourneyType = 'Research' | 'Project' | 'Education' | 'Work'
 
-export const journey: { when: string; type: JourneyType; title: string; detail: string }[] = [
-  { when: 'Oct 2026', type: 'Research', title: 'CF-NODE on arXiv', detail: 'arXiv:2610.22437, first author with Deepak Parashar. Best average AUC and macro-F1 against TENT, EATA, SAR and T3A on five unseen DR datasets.' },
-  // TODO: exact months for each 2026 project
-  { when: '2026', type: 'Project', title: 'Shipping year', detail: 'Metric On-Call (in progress), FaceRoll live in class, CallBack AI, Credit Policy Optimizer, Flight Delay Prediction.' },
-  { when: 'Jul 2025 – May 2027', type: 'Education', title: 'MS, Business Analytics · Manipal Academy of Higher Education', detail: 'Final year. Machine Learning, Predictive Analytics, Statistical Modeling, Data Visualization, Big Data Analytics.' },
-  { when: 'Nov 2024 – Feb 2025', type: 'Work', title: 'Finance Associate · Jetapult', detail: 'Mobile gaming venture studio, Bengaluru. Leadership reports from user-acquisition and game data; data behind the investor pitch deck.' },
-  { when: 'Jun 2023 – Nov 2024', type: 'Work', title: 'Finance Associate · Wego', detail: 'Online travel search platform, Bengaluru. SAP → NetSuite migration data, Tableau / Looker dashboards, 30+ hours saved per week.' },
-  { when: 'Jan 2023 – May 2023', type: 'Work', title: 'Finance Intern · Wego', detail: 'Converted to full-time.' },
-  { when: 'Aug 2020 – Aug 2023', type: 'Education', title: 'BBA, Finance · PES University, Bengaluru', detail: 'Finance foundations: reporting, accounting, unit economics.' },
-]
-
-export const experience = [
+export const journey: {
+  when: string
+  type: JourneyType
+  title: string
+  where?: string
+  detail: string
+  points?: string[]
+  tags?: string[]
+}[] = [
   {
-    company: 'Wego',
-    about: 'Online travel search platform',
-    role: 'Finance Associate',
-    dates: 'Jun 2023 – Nov 2024',
-    extra: 'Finance Intern Jan – May 2023, converted to full-time',
-    location: 'Bengaluru',
-    bullets: [
-      'Cleaned, mapped and validated two years of financial records (BigQuery, SQL, Excel) for the SAP → Oracle NetSuite migration, working with the heads of Product, Engineering, Marketing and HR.',
-      'Built Tableau and Looker dashboards on booking volume, cost per booking and profitability by product and region for leadership.',
-      'Automated recurring reports with VBA and BigQuery and redesigned the workflow with Six Sigma DMAIC: 27% fewer process steps, 30+ hours saved per week.',
-    ],
-    stats: [
-      { value: '27%', label: 'fewer process steps' },
-      { value: '30+ h', label: 'saved per week' },
+    when: 'Oct 2026',
+    type: 'Research',
+    title: 'CF-NODE published on arXiv',
+    where: 'arXiv:2610.22437 · with Deepak Parashar',
+    detail: 'First-author paper on keeping diabetic-retinopathy grading models reliable on images from new hospitals and cameras, without retraining.',
+    points: ['Best average AUC and macro-F1 against TENT, EATA, SAR and T3A on five unseen datasets', 'Open-source code (MIT) with a plug-in run_tta API'],
+    tags: ['PyTorch', 'Computer vision', 'Research'],
+  },
+  // TODO: exact months for each 2026 project
+  {
+    when: '2026',
+    type: 'Project',
+    title: 'Building projects end to end',
+    detail: 'Analytics, ML and AI-agent projects on real public data, each with a write-up and code on GitHub.',
+    points: ['Flight Delay Prediction on 39M flights', 'Credit Policy Optimizer on 789K loans', 'FaceRoll, live in my MSc class', 'CallBack AI voice agent', 'Metric On-Call (in progress)'],
+  },
+  {
+    when: 'Jul 2025 – May 2027',
+    type: 'Education',
+    title: 'MS, Business Analytics',
+    where: 'Manipal Academy of Higher Education · final year',
+    detail: 'Where finance experience met statistics and machine learning.',
+    points: ['Machine Learning', 'Predictive Analytics', 'Statistical Modeling', 'Data Visualization', 'Big Data Analytics'],
+  },
+  {
+    when: 'Nov 2024 – Feb 2025',
+    type: 'Work',
+    title: 'Finance Associate · Jetapult',
+    where: 'Mobile gaming venture studio · Bengaluru',
+    detail: 'Reporting for leadership in a games studio.',
+    points: ['Built leadership reports combining user-acquisition and game data', 'Prepared the data behind the investor pitch deck'],
+    tags: ['Excel', 'Reporting', 'Dashboards'],
+  },
+  {
+    when: 'Jun 2023 – Nov 2024',
+    type: 'Work',
+    title: 'Finance Associate · Wego',
+    where: 'Online travel search platform · Bengaluru',
+    detail: 'Finance data, dashboards and process automation.',
+    points: [
+      'Cleaned, mapped and validated two years of financial records (BigQuery, SQL, Excel) for the SAP → Oracle NetSuite migration, with the heads of Product, Engineering, Marketing and HR',
+      'Built Tableau and Looker dashboards on booking volume, cost per booking and profitability by product and region for leadership',
+      'Automated recurring reports with VBA and BigQuery and redesigned the workflow with Six Sigma DMAIC: 27% fewer process steps, 30+ hours saved per week',
     ],
     tags: ['BigQuery', 'SQL', 'Excel', 'VBA', 'Tableau', 'Looker', 'NetSuite', 'Six Sigma'],
-    accent: 'lime' as const,
   },
   {
-    company: 'Jetapult',
-    about: 'Mobile gaming venture studio',
-    role: 'Finance Associate',
-    dates: 'Nov 2024 – Feb 2025',
-    extra: '',
-    location: 'Bengaluru',
-    bullets: [
-      'Built leadership reports combining user-acquisition and game data, and prepared the data behind the investor pitch deck.',
-    ],
-    stats: [],
-    tags: ['Excel', 'Reporting', 'Dashboards', 'Gaming'],
-    accent: 'pink' as const,
-  },
-]
-
-export const education = [
-  {
-    degree: 'MS, Business Analytics',
-    school: 'Manipal Academy of Higher Education',
-    years: 'Jul 2025 – May 2027',
-    note: 'Final year',
-    coursework: ['Machine Learning', 'Predictive Analytics', 'Statistical Modeling', 'Data Visualization', 'Big Data Analytics'],
+    when: 'Jan 2023 – May 2023',
+    type: 'Work',
+    title: 'Finance Intern · Wego',
+    where: 'Bengaluru',
+    detail: 'Converted to a full-time role.',
   },
   {
-    degree: 'BBA, Finance',
-    school: 'PES University, Bengaluru',
-    years: 'Aug 2020 – Aug 2023',
-    note: '',
-    coursework: [],
+    when: 'Aug 2020 – Aug 2023',
+    type: 'Education',
+    title: 'BBA, Finance',
+    where: 'PES University, Bengaluru',
+    detail: 'Finance foundations: accounting, financial reporting and business fundamentals.',
   },
 ]
 
-// TODO: credential URLs and missing years
-export const certifications = [
-  { name: 'IBM Data Science Professional Certificate', issuer: 'IBM · Coursera', year: '2026', icon: 'coursera', url: '' },
-  { name: 'Microsoft AI Product Manager Professional Certificate', issuer: 'Microsoft · Coursera', year: '2026', icon: 'coursera', url: '' },
-  { name: 'Model Context Protocol: Advanced Topics', issuer: 'Anthropic', year: '', icon: 'anthropic', url: '' },
-  { name: 'AI Fluency for Creative Work', issuer: 'Anthropic', year: '', icon: 'anthropic', url: '' },
-  { name: 'Google Project Management Certificate', issuer: 'Google', year: '', icon: 'google', url: '' },
-  { name: 'Agile Project Management Professional Certificate', issuer: 'Atlassian · LinkedIn Learning', year: '2025', icon: 'atlassian', url: '' },
+/** logos that run across the band under the hero */
+export const toolBand: Skill[] = [
+  { name: 'Python', icon: 'python' },
+  { name: 'Power BI', icon: 'powerbi' },
+  { name: 'Tableau', icon: 'tableau' },
+  { name: 'Excel', icon: 'microsoftexcel' },
+  { name: 'SQL', icon: 'postgresql' },
+  { name: 'BigQuery', icon: 'googlebigquery' },
+  { name: 'Looker', icon: 'looker' },
+  { name: 'pandas', icon: 'pandas' },
+  { name: 'scikit-learn', icon: 'scikitlearn' },
+  { name: 'Jupyter', icon: 'jupyter' },
+  { name: 'Streamlit', icon: 'streamlit' },
+  { name: 'PyTorch', icon: 'pytorch' },
 ]
-
-/* ---------------- Guess-the-metric game (all answers are real) ---------------- */
-
-export const quiz = [
-  { project: 'Flight Delay Prediction', q: 'What PR-AUC did the flight model hit (baseline 0.350)?', options: ['0.548', '0.748', '0.912'], answer: 1, scale: [0.548, 0.748, 0.912] },
-  { project: 'Credit Policy Optimizer', q: 'Profit on unseen loans went from €2.0M to…', options: ['€2.9M', '€6.1M', '€4.7M'], answer: 2, scale: [2.9, 6.1, 4.7] },
-  { project: 'CF-NODE', q: 'Average AUC across the five unseen retinopathy datasets?', options: ['80.3%', '74.9%', '88.1%'], answer: 0, scale: [80.3, 74.9, 88.1] },
-  { project: 'Flight Delay Prediction', q: 'How many of the 65 raw monthly files had corrupted dates?', options: ['7', '36', '12'], answer: 1, scale: [7, 36, 12] },
-  { project: 'Retail Energy & Carbon', q: 'Bottom-quartile stores use how much energy per m² vs the top quartile?', options: ['1.6×', '9.2×', '4.0×'], answer: 2, scale: [1.6, 9.2, 4.0] },
-  { project: 'Broken Promise Tax', q: 'Causal effect of a late delivery on its review score?', options: ['−1.98★', '−0.42★', '−3.10★'], answer: 0, scale: [1.98, 0.42, 3.1] },
-  { project: 'FaceRoll', q: 'Time to mark a 56-face class photo on 2 CPUs?', options: ['~4 s', '~40 s', '~4 min'], answer: 1, scale: [4, 40, 240] },
-]
-
-export const marquee = [
-  'PR-AUC 0.748',
-  '€2.0M → €4.7M',
-  '80.3% AUC on 5 unseen datasets',
-  '39,073,000 flights',
-  '−1.98★ per late order',
-  '30+ hours saved a week',
-  '4.0× energy gap',
-  '56 faces in ~40 s',
-]
-
-/** repos the "More on GitHub" strip should skip (forks are always skipped) */
-export const hideRepos = ['1', '2', 'dataset-', 'sabarishknight.github.io']

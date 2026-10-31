@@ -50,7 +50,7 @@ export default function Footer() {
           Let’s talk.
         </h2>
         <p className="mt-6 max-w-[48ch] text-xl">
-          Hiring for data science, ML, analytics or product? Email is the fastest way to reach me. {site.available}.
+          Hiring a data scientist, data analyst, business analyst or product analyst? Email, call or message me on WhatsApp. {site.available}.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <a href={`mailto:${site.email}`} className="brut-sm press flex items-center gap-2 bg-lime px-5 py-3 font-display text-xl font-bold text-[#0a0a0a]">
@@ -61,6 +61,12 @@ export default function Footer() {
           </a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="brut-sm press flex items-center gap-2 bg-cyan px-5 py-3 font-display text-xl font-bold text-[#0a0a0a]">
             <SkillIcon name="LinkedIn" slug="linkedin" size={22} /> LinkedIn
+          </a>
+          <a href={site.phoneHref} className="brut-sm press flex items-center gap-2 bg-sun px-5 py-3 font-display text-xl font-bold text-[#0a0a0a]">
+            <span aria-hidden="true">☎</span> {site.phone}
+          </a>
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="brut-sm press flex items-center gap-2 bg-[#25D366] px-5 py-3 font-display text-xl font-bold text-[#0a0a0a]">
+            <SkillIcon name="WhatsApp" slug="whatsapp" size={22} /> WhatsApp
           </a>
           {others.map((l) => (
             <a key={l.label} href={l.url} target="_blank" rel="noopener noreferrer" className="brut-sm press bg-surface px-5 py-3 font-display text-xl font-bold text-ink">
@@ -84,7 +90,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className="mt-10 select-none overflow-hidden whitespace-nowrap text-center font-display text-[19vw] font-extrabold leading-[0.78] tracking-tighter text-ink/15" aria-hidden="true">
+      <p className="mt-10 select-none overflow-hidden whitespace-nowrap text-center font-display text-[19vw] font-extrabold leading-[0.78] tracking-tighter text-ink/[0.07]" aria-hidden="true">
         SABARISH G
       </p>
       <div className="wrap flex flex-wrap justify-between gap-2 pb-6 pt-4 font-mono text-xs opacity-80">

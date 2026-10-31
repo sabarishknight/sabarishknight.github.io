@@ -63,24 +63,33 @@ export default function Research() {
           ))}
         </ul>
 
-        {/* problem */}
-        <h3 className="mt-20 text-[clamp(2rem,4.5vw,3.4rem)]">Why test-time adaptation breaks in the clinic</h3>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {paper.problem.map((p, i) => (
-            <motion.div key={p.head} {...reveal} transition={{ delay: i * 0.08 }} className="brut bg-surface p-5 text-ink">
-              <p className="font-display text-xl font-bold tracking-tight">{p.head}</p>
-              <p className="mt-2 text-[16px]">{p.body}</p>
-            </motion.div>
-          ))}
+        {/* the one interactive piece stays open; the rest expands on demand */}
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+          <div>
+            <h3 className="text-[clamp(2rem,4.5vw,3.4rem)]">The idea in one slider</h3>
+            <p className="mt-4 max-w-[46ch] text-lg">
+              Weaken the parts of the image the model leans on most, and watch how much the predicted grade moves. A stable, strong response means the model can be trusted to sharpen its answer; a weak one means it should stay cautious. No retraining, no other patients’ images.
+            </p>
+            <p className="mt-4 font-mono text-sm opacity-80">Open the boxes below for the method, the full results and the data.</p>
+          </div>
+          <Playground />
         </div>
 
-        {/* method */}
-        <h3 className="mt-20 text-[clamp(2rem,4.5vw,3.4rem)]">How CF-NODE works</h3>
-        <div className="mt-6 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
-          <ol className="grid gap-3">
-            {paper.steps.map((s, i) => (
-              <motion.li key={s.name} {...reveal} transition={{ delay: i * 0.06 }} className="brut bg-surface p-4 text-ink">
-                <div className="flex items-baseline gap-3">
+        <div className="mt-10 grid gap-4">
+          <Box title="Why test-time adaptation breaks in the clinic">
+            <div className="grid gap-4 md:grid-cols-3">
+              {paper.problem.map((p) => (
+                <div key={p.head} className="brut-sm bg-paper p-4">
+                  <p className="font-display text-xl font-bold tracking-tight">{p.head}</p>
+                  <p className="mt-2 text-[16px]">{p.body}</p>
+                </div>
+              ))}
+            </div>
+          </Box>
+          <Box title="How CF-NODE works, step by step">
+            <ol className="grid gap-3">
+              {paper.steps.map((s, i) => (
+                <li key={s.name} className="flex items-baseline gap-3">
                   <span className="brut-sm grid h-8 w-8 flex-none place-items-center bg-sun font-mono text-sm font-bold text-[#0a0a0a]" aria-hidden="true">
                     {i + 1}
                   </span>
@@ -89,79 +98,94 @@ export default function Research() {
                     <p className="mt-1 text-[16px]">{s.body}</p>
                     <code className="mt-2 inline-block bg-paper px-2 py-1 font-mono text-sm">{s.math}</code>
                   </div>
-                </div>
-              </motion.li>
-            ))}
-          </ol>
-          <Playground />
-        </div>
-
-        {/* results */}
-        <h3 className="mt-20 text-[clamp(2rem,4.5vw,3.4rem)]">Results on five unseen datasets</h3>
-        <Results />
-
-        {/* ablation + data */}
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
-          <Ablation />
-          <div className="brut bg-surface p-5 text-ink">
-            <h4 className="text-2xl">Data</h4>
-            <table className="mt-3 w-full text-left text-[15px]">
-              <thead className="font-mono text-xs">
-                <tr className="border-b-2 border-line">
-                  <th className="py-1.5 pr-2">Dataset</th>
-                  <th className="py-1.5 pr-2">Role</th>
-                  <th className="py-1.5 pr-2 text-right">Images</th>
-                </tr>
-              </thead>
-              <tbody>
-                {paper.data.map((d) => (
-                  <tr key={d.name} className="border-b border-line/30 align-top">
-                    <td className="py-2 pr-2 font-semibold">
-                      {d.name}
-                      {d.note && <span className="block text-xs font-normal opacity-80">{d.note}</span>}
-                    </td>
-                    <td className="py-2 pr-2">
-                      <span className={`px-1.5 font-mono text-xs font-bold text-[#0a0a0a] ${d.role === 'source' ? 'bg-sun' : 'bg-cyan'}`}>{d.role}</span>
-                    </td>
-                    <td className="py-2 text-right font-mono tabular-nums">{d.n}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
-          <div className="brut bg-surface p-5 text-ink">
-            <h4 className="text-2xl">Setup</h4>
-            <ul className="mt-3 grid gap-2 text-[16px]">
-              {paper.setup.map((s) => (
-                <li key={s} className="flex gap-2">
-                  <span className="text-pink" aria-hidden="true">■</span>
-                  {s}
                 </li>
               ))}
-            </ul>
-          </div>
-          <div className="brut on-accent bg-sun p-5">
-            <h4 className="text-2xl">Where it falls short</h4>
-            <ul className="mt-3 grid gap-2 text-[16px]">
-              {paper.honest.map((s) => (
-                <li key={s} className="flex gap-2">
-                  <span aria-hidden="true">△</span>
-                  {s}
-                </li>
-              ))}
-            </ul>
-          </div>
+            </ol>
+          </Box>
+          <Box title="Results on five unseen datasets">
+            <Results />
+            <div className="mt-6">
+              <Ablation />
+            </div>
+          </Box>
+          <Box title="Data, setup and limitations">
+            <div className="grid gap-6 lg:grid-cols-2">
+              <DataTable />
+              <div className="grid gap-6">
+                <List title="Setup" items={paper.setup} mark="■" />
+                <List title="Where it falls short" items={paper.honest} mark="△" />
+              </div>
+            </div>
+          </Box>
+          <Box title="Cite this paper (BibTeX)">
+            <pre className="overflow-x-auto whitespace-pre bg-paper p-4 font-mono text-[13px]">{bibtex}</pre>
+          </Box>
         </div>
-
-        <details className="brut mt-6 bg-surface p-5 text-ink">
-          <summary className="cursor-pointer font-display text-xl font-bold">Cite this paper (BibTeX)</summary>
-          <pre className="mt-3 overflow-x-auto whitespace-pre bg-paper p-4 font-mono text-[13px]">{bibtex}</pre>
-        </details>
       </div>
     </section>
+  )
+}
+
+function Box({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <details className="brut group bg-surface text-ink">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-display text-[clamp(1.25rem,2.2vw,1.7rem)] font-bold tracking-tight [&::-webkit-details-marker]:hidden">
+        {title}
+        <span className="brut-sm grid h-9 w-9 flex-none place-items-center bg-lime font-mono text-xl text-[#0a0a0a] transition-transform group-open:rotate-45" aria-hidden="true">
+          +
+        </span>
+      </summary>
+      <div className="border-t-[3px] border-line p-5">{children}</div>
+    </details>
+  )
+}
+
+function List({ title, items, mark }: { title: string; items: string[]; mark: string }) {
+  return (
+    <div>
+      <h4 className="text-2xl">{title}</h4>
+      <ul className="mt-3 grid gap-2 text-[16px]">
+        {items.map((s) => (
+          <li key={s} className="flex gap-2">
+            <span className="text-pink" aria-hidden="true">
+              {mark}
+            </span>
+            {s}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function DataTable() {
+  return (
+    <div>
+      <h4 className="text-2xl">Data</h4>
+      <table className="mt-3 w-full text-left text-[15px]">
+        <thead className="font-mono text-xs">
+          <tr className="border-b-2 border-line">
+            <th className="py-1.5 pr-2">Dataset</th>
+            <th className="py-1.5 pr-2">Role</th>
+            <th className="py-1.5 pr-2 text-right">Images</th>
+          </tr>
+        </thead>
+        <tbody>
+          {paper.data.map((d) => (
+            <tr key={d.name} className="border-b border-line/30 align-top">
+              <td className="py-2 pr-2 font-semibold">
+                {d.name}
+                {d.note && <span className="block text-xs font-normal opacity-80">{d.note}</span>}
+              </td>
+              <td className="py-2 pr-2">
+                <span className={`px-1.5 font-mono text-xs font-bold text-[#0a0a0a] ${d.role === 'source' ? 'bg-sun' : 'bg-cyan'}`}>{d.role}</span>
+              </td>
+              <td className="py-2 text-right font-mono tabular-nums">{d.n}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
@@ -214,7 +238,7 @@ function Playground() {
   const L = paper.levels[lvl]
   const k = L.r === 0 ? 0 : Math.max(Math.floor(L.r * 100), 1)
   return (
-    <motion.div {...reveal} className="brut on-accent flex flex-col self-start bg-cyan p-5 lg:sticky lg:top-24">
+    <motion.div {...reveal} className="brut on-accent flex flex-col bg-cyan p-5">
       <h4 className="text-2xl">Intervention playground</h4>
       <p className="mt-1 text-[16px]">Slide through the four intervention levels. The highest-ranked nodes are weakened to the retained magnitude ρ.</p>
       <div className="mt-4 grid grid-cols-10 gap-1 self-center rounded-full border-[3px] border-[#0a0a0a] bg-[#0a0a0a] p-4" style={{ width: 'min(100%, 340px)', aspectRatio: '1' }} aria-hidden="true">
@@ -253,7 +277,7 @@ function Results() {
   const best = Math.max(...vals)
   const cols = [...paper.datasets, 'Average']
   return (
-    <div className="brut mt-6 bg-surface p-5 text-ink md:p-7">
+    <div>
       <div className="flex flex-wrap items-center gap-3">
         <div role="group" aria-label="Metric" className="flex gap-2">
           {(['auc', 'f1'] as const).map((m) => (
@@ -304,7 +328,7 @@ function Ablation() {
   const lo = 79
   const hi = 81
   return (
-    <div className="brut bg-surface p-5 text-ink">
+    <div>
       <h4 className="text-2xl">Ablation: does ranking matter?</h4>
       <p className="mt-1 text-[16px]">Same views, prior and checkpoints. Only the node choice changes. Random nodes do nothing; ranked nodes do the work.</p>
       <ul className="mt-4 grid gap-3">

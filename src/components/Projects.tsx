@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import { categories, projects, type Project } from '../data/content'
 import MiniChart from './MiniChart'
-import { MetricChip, RepoCard, RunCell, StatusBadge } from './ProjectBits'
+import { RepoCard, RunCell, StatusBadge } from './ProjectBits'
 import { accentVar } from '../lib/util'
 
 export default function Projects() {
@@ -14,7 +14,7 @@ export default function Projects() {
         <h2 id="projects-h" className="h-section">
           All projects
         </h2>
-        <p className="max-w-[40ch] text-lg">Eight builds across ML, vision, agents and causal analytics. Filter by what you care about.</p>
+        <p className="max-w-[40ch] text-lg">Everything I’ve built, with code on GitHub. Filter by area, then run a cell for the results.</p>
       </div>
       <LayoutGroup>
         <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
@@ -85,11 +85,6 @@ function Card({ p, n }: { p: Project; n: number }) {
             {p.data}
           </p>
         )}
-        <ul className="flex flex-wrap gap-2" aria-label="Key metrics">
-          {p.metrics.map((m) => (
-            <MetricChip key={m.label} m={m} />
-          ))}
-        </ul>
         <ul className="flex flex-wrap gap-1.5" aria-label="Tools">
           {p.tools.map((t) => (
             <li key={t} className="border-2 border-line px-2 py-0.5 font-mono text-xs">

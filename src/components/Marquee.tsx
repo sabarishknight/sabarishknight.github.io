@@ -1,10 +1,10 @@
-import { useRef } from 'react'
+import { useRef, type ReactNode } from 'react'
 import { motion, useAnimationFrame, useMotionValue, useScroll, useSpring, useTransform, useVelocity, useReducedMotion } from 'framer-motion'
 
 const wrap = (min: number, max: number, v: number) => ((((v - min) % (max - min)) + (max - min)) % (max - min)) + min
 
 /** Endless band that speeds up, reverses and skews with your scroll velocity. */
-export default function Marquee({ items, reverse, tone = 'ink' }: { items: string[]; reverse?: boolean; tone?: 'ink' | 'pink' }) {
+export default function Marquee({ items, reverse, tone = 'ink' }: { items: ReactNode[]; reverse?: boolean; tone?: 'ink' | 'pink' }) {
   const reduce = useReducedMotion()
   const base = useMotionValue(0)
   const { scrollY } = useScroll()
@@ -30,7 +30,7 @@ export default function Marquee({ items, reverse, tone = 'ink' }: { items: strin
         {[0, 1].map((k) => (
           <div key={k} className="flex">
             {row.map((t, i) => (
-              <span key={i} className="flex items-center font-display text-[clamp(1.6rem,4vw,3rem)] font-extrabold tracking-tight">
+              <span key={i} className="flex items-center gap-0 font-display text-[clamp(1.6rem,4vw,3rem)] font-extrabold tracking-tight">
                 <span className="px-6">{t}</span>
                 <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="9" fill={['var(--lime)', 'var(--cyan)', 'var(--sun)'][i % 3]} stroke="currentColor" strokeWidth="3" /></svg>
               </span>

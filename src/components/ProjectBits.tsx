@@ -89,21 +89,26 @@ export function RunCell({ p, n }: { p: Project; n: number }) {
     bar()
   }
   return (
-    <div className="brut-sm overflow-hidden bg-surface font-mono text-[13px]">
-      <div className="flex items-center gap-2 border-b-[2.5px] border-line px-2 py-1.5">
-        <button
-          onClick={run}
-          className="brut-sm press grid h-7 w-7 place-items-center bg-lime text-[#0a0a0a]"
-          aria-label={`Run cell: show results for ${p.short}`}
-        >
-          {state === 'run' ? '■' : '▶'}
-        </button>
-        <span className="opacity-80">
-          In [{state === 'done' ? n : state === 'run' ? '*' : ' '}]: results("{p.id}")
+    <div className="brut-sm overflow-hidden bg-surface">
+      <button
+        onClick={run}
+        className="group flex w-full items-center gap-4 bg-lime px-4 py-3 text-left text-[#0a0a0a] transition-colors hover:bg-sun"
+        aria-label={`Run cell: show results for ${p.short}`}
+      >
+        <span className="brut-sm grid h-12 w-12 flex-none place-items-center bg-[#0a0a0a] text-xl text-lime transition-transform group-hover:scale-110 group-active:scale-95" style={{ ['--line' as string]: '#0a0a0a' }}>
+          {state === 'run' ? '■' : state === 'done' ? '↻' : '▶'}
         </span>
-      </div>
+        <span>
+          <span className="block font-display text-xl font-extrabold leading-tight tracking-tight">
+            {state === 'idle' ? 'Run to see the results' : state === 'run' ? 'Running…' : 'Run again'}
+          </span>
+          <span className="block font-mono text-xs">
+            In [{state === 'done' ? n : state === 'run' ? '*' : ' '}]: results("{p.id}")
+          </span>
+        </span>
+      </button>
       {state !== 'idle' && (
-        <div className="px-3 py-2" aria-live="polite">
+        <div className="border-t-[2.5px] border-line px-4 py-3 font-mono text-[13px]" aria-live="polite">
           <div className="mb-2 h-2.5 w-full border-2 border-line" aria-hidden="true">
             <div className="h-full bg-pink transition-[width] duration-75" style={{ width: `${prog}%` }} />
           </div>
@@ -112,6 +117,13 @@ export function RunCell({ p, n }: { p: Project; n: number }) {
               <span className="text-pink">›</span> {l}
             </p>
           ))}
+          {state === 'done' && p.metrics.length > 0 && (
+            <motion.ul initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-3 flex flex-wrap gap-2 font-sans" aria-label="Key results">
+              {p.metrics.map((m) => (
+                <MetricChip key={m.label} m={m} />
+              ))}
+            </motion.ul>
+          )}
         </div>
       )}
     </div>

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { site } from '../data/content'
 import { SkillIcon } from '../lib/icons'
 import ScatterCanvas from './ScatterCanvas'
-import Counters from './Counters'
 
 function Typewriter({ words }: { words: string[] }) {
   const [i, setI] = useState(0)
@@ -55,37 +54,65 @@ export default function Hero() {
         <motion.h1 {...rise(0.06)} className="mt-5 text-[clamp(4.2rem,17vw,15rem)] leading-[0.8]">
           Sabarish&nbsp;G
         </motion.h1>
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.05fr] lg:items-start">
-          <div>
-            <motion.p {...rise(0.12)} className="max-w-[24ch] font-display text-[clamp(1.6rem,3vw,2.5rem)] font-bold leading-[1.05] tracking-tight">
-              {site.tagline}
-            </motion.p>
-            <motion.p {...rise(0.18)} className="mt-5 font-mono text-[clamp(1rem,1.6vw,1.2rem)]" aria-live="off">
-              <span className="text-pink">&gt;&gt;&gt;</span> focus = "<Typewriter words={site.rotating} />"
-            </motion.p>
-            <motion.div {...rise(0.22)} className="pointer-events-auto mt-7 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              <HeroBtn href={site.github} label="GitHub" icon="github" bg="var(--surface)" />
-              <HeroBtn href={site.linkedin} label="LinkedIn" icon="linkedin" bg="var(--cyan)" />
-              <HeroBtn href={site.resume} label="Resume ↓" bg="var(--pink)" download />
-              <HeroBtn href={`mailto:${site.email}`} label="Email" icon="gmail" bg="var(--lime)" />
-            </motion.div>
-          </div>
-          <motion.div {...rise(0.26)} className="pointer-events-auto brut relative p-5 md:p-6">
-            <p className="font-mono text-xs font-semibold opacity-70">In [1]: about_me()</p>
-            <p className="mt-2 text-[17px] leading-relaxed">{site.bio}</p>
-            <p className="mt-4 font-mono text-sm">
-              <span className="bg-sun px-1.5 py-0.5 text-[#0a0a0a]">open_to</span> {site.openTo}
-            </p>
-          </motion.div>
-        </div>
-      </div>
-      <div className="wrap pointer-events-none relative pb-12">
-        <Counters />
-        <p className="mt-6 hidden font-mono text-xs opacity-70 md:block" aria-hidden="true">
-          ↖ tip: click anywhere in this hero to add a data point and watch the regression line refit · press / for commands
-        </p>
+        <motion.p {...rise(0.1)} className="mt-6 max-w-[30ch] font-display text-[clamp(1.6rem,3vw,2.5rem)] font-bold leading-[1.05] tracking-tight">
+          {site.tagline}
+        </motion.p>
+        <motion.p {...rise(0.14)} className="mt-4 font-mono text-[clamp(1rem,1.6vw,1.2rem)]" aria-live="off">
+          <span className="text-pink">&gt;&gt;&gt;</span> focus = "<Typewriter words={site.rotating} />"
+        </motion.p>
+        <motion.div {...rise(0.18)} className="pointer-events-auto mt-7 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <HeroBtn href={site.github} label="GitHub" icon="github" bg="var(--surface)" />
+          <HeroBtn href={site.linkedin} label="LinkedIn" icon="linkedin" bg="var(--cyan)" />
+          <HeroBtn href={site.resume} label="Resume ↓" bg="var(--pink)" download />
+          <HeroBtn href={`mailto:${site.email}`} label="Email" icon="gmail" bg="var(--lime)" />
+        </motion.div>
+        <AboutMe />
       </div>
     </section>
+  )
+}
+
+/** The bio, set as a Python function you could actually read in a notebook. */
+function AboutMe() {
+  const k = (t: string) => <span className="text-pink">{t}</span>
+  const str = (t: string) => <span className="text-[#0f7b3a] dark:text-lime">"{t}"</span>
+  return (
+    <motion.div {...rise(0.24)} className="pointer-events-auto brut mt-14 overflow-hidden" data-no-add>
+      <div className="on-accent flex items-center justify-between border-b-[3px] border-line bg-sun px-5 py-2.5 font-mono text-sm font-bold">
+        <span>In [1]: about_me()</span>
+        <span className="hidden sm:inline">about_me.py</span>
+      </div>
+      <div className="grid gap-6 p-5 md:p-8 lg:grid-cols-[1.5fr_1fr]">
+        <div>
+          <p className="font-mono text-sm">
+            {k('def')} <span className="font-bold">about_me</span>():
+          </p>
+          <p className="mt-3 border-l-4 border-pink pl-4 text-[clamp(1.15rem,1.7vw,1.4rem)] leading-relaxed">{site.bio}</p>
+        </div>
+        <div className="brut-sm self-start bg-paper p-4 font-mono text-[15px] leading-relaxed">
+          <p>
+            {k('return')} {'{'}
+          </p>
+          <div className="pl-5">
+            <p>
+              {str('based_in')}: {str(site.location)},
+            </p>
+            <p>{str('open_to')}: [</p>
+            <ul className="pl-5">
+              {site.roles.map((r) => (
+                <li key={r}>{str(r)},</li>
+              ))}
+            </ul>
+            <p>],</p>
+            <p>
+              {str('available')}: {str('Dec 2026')},
+            </p>
+          </div>
+          <p>{'}'}</p>
+          <p className="mt-3 text-xs opacity-80"># any of these roles: let’s talk</p>
+        </div>
+      </div>
+    </motion.div>
   )
 }
 

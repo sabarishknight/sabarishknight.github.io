@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, type MotionValue } from 'framer-motion'
 import { projects, type Project } from '../data/content'
 import MiniChart from './MiniChart'
-import { MetricChip, RepoCard, RunCell, StatusBadge } from './ProjectBits'
+import { RepoCard, RunCell, StatusBadge } from './ProjectBits'
 import { accentVar, toast } from '../lib/util'
 
 const featured = projects.filter((p) => p.featured)
@@ -29,7 +29,7 @@ export default function Featured() {
     seen.current.add(id)
     if (!fired.current && seen.current.size === featured.length) {
       fired.current = true
-      toast('Achievement unlocked: you found all 4 featured projects!')
+      toast(`Achievement unlocked: you found all ${featured.length} top projects!`)
     }
   }
 
@@ -41,7 +41,7 @@ function Heading({ compact }: { compact?: boolean }) {
     <div className="flex flex-wrap items-end justify-between gap-4">
       <h2 className={compact ? 'text-[clamp(2.4rem,4.6vw,4.2rem)]' : 'h-section'}>Top projects</h2>
       <p className="max-w-[42ch] text-lg">
-        Four case studies: the problem, what I did, and what changed. Press <span className="font-mono">▶</span> to run a cell.
+        Five case studies: the problem and what I did. Press <span className="font-mono">▶</span> to run each one and see the results.
       </p>
     </div>
   )
@@ -85,7 +85,7 @@ function Progress({ p }: { p: MotionValue<number> }) {
       <div className="relative h-3 flex-1 border-2 border-line bg-surface">
         <motion.div className="absolute inset-y-0 left-0 bg-lime" style={{ width: w }} />
       </div>
-      <span>{featured.length} studies</span>
+      <span>{featured.length} projects</span>
     </div>
   )
 }
@@ -112,7 +112,6 @@ function Card({ p, i, markSeen, compact, className = '' }: { p: Project; i: numb
     io.observe(ref.current!)
     return () => io.disconnect()
   }, [p.id, markSeen])
-  const result = p.metrics.slice(0, compact ? 3 : 4)
   return (
     <article ref={ref} className={`brut min-w-0 flex-none overflow-hidden ${className}`} aria-labelledby={`f-${p.id}`}>
       <div className="on-accent flex flex-wrap items-center justify-between gap-3 border-b-[3px] border-line px-5 py-3" style={{ background: accentVar[p.accent] }}>
@@ -133,16 +132,6 @@ function Card({ p, i, markSeen, compact, className = '' }: { p: Project; i: numb
             <div>
               <dt className="font-mono text-sm font-bold text-pink">what I did →</dt>
               <dd>{p.did}</dd>
-            </div>
-            <div>
-              <dt className="font-mono text-sm font-bold text-pink">result →</dt>
-              <dd>
-                <ul className="mt-1.5 flex flex-wrap gap-2">
-                  {result.map((m) => (
-                    <MetricChip key={m.label} m={m} />
-                  ))}
-                </ul>
-              </dd>
             </div>
           </dl>
         </div>
